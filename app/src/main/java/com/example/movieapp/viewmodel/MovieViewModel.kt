@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.movieapp.model.response.Movie
 import com.example.movieapp.model.response.Results
 import com.example.movieapp.repository.MovieRepository
+import com.example.movieapp.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,14 +15,14 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
 
-    var _movies = MutableLiveData<Movie>()
-    val movies: MutableLiveData<Movie> get() =  _movies
+    var _movies = MutableLiveData<NetworkResult<Movie>>()
+    val movies: MutableLiveData<NetworkResult<Movie>> get() =  _movies
 
-    var _movieDetail = MutableLiveData<Results>()
-    val movieDetail: MutableLiveData<Results> get() =  _movieDetail
+    var _movieDetail = MutableLiveData<NetworkResult<Results>>()
+    val movieDetail: MutableLiveData<NetworkResult<Results>> get() =  _movieDetail
 
-    var _searchMovie = MutableLiveData<Movie>()
-    val searchMovie: MutableLiveData<Movie> get() =  _searchMovie
+    var _searchMovie = MutableLiveData<NetworkResult<Movie>>()
+    val searchMovie: MutableLiveData<NetworkResult<Movie>> get() =  _searchMovie
 
     init {
         viewModelScope.launch {

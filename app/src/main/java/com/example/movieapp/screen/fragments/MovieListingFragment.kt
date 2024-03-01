@@ -56,12 +56,12 @@ class MovieListingFragment : Fragment(), MovieAdapter.OnMovieClickListener {
 
         viewModel.movies.observe(viewLifecycleOwner) { movies ->
             movies?.let {
-                adapter.submitList(it.results)
+                adapter.submitList(it.data?.results)
             }
         }
         viewModel.searchMovie.observe(viewLifecycleOwner) { movies ->
             movies?.let {
-                adapter.submitList(it.results)
+                adapter.submitList(it.data?.results)
             }
         }
     }

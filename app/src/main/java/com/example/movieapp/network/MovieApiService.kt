@@ -3,17 +3,18 @@ package com.example.movieapp.network
 import com.example.movieapp.constants.Constants
 import com.example.movieapp.model.response.Movie
 import com.example.movieapp.model.response.Results
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieApiService {
     @GET("movie/popular?api_key=" + Constants.apiKey)
-    suspend fun getPopularMovies(): Movie
+    suspend fun getPopularMovies(): Response<Movie>
 
     @GET("movie/{movieId}?api_key=" + Constants.apiKey)
-    suspend fun getMovieDetailById(@Path("movieId") movieId: String): Results
+    suspend fun getMovieDetailById(@Path("movieId") movieId: String): Response<Results>
 
     @GET("search/movie?api_key=" + Constants.apiKey)
-    suspend fun searchMovie(@Query("query") query: String): Movie
+    suspend fun searchMovie(@Query("query") query: String): Response<Movie>
 }

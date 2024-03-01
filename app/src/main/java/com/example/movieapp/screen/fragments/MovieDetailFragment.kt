@@ -38,12 +38,16 @@ class MovieDetailFragment : Fragment() {
         }
 
         viewModel.movieDetail.observe(viewLifecycleOwner) { movies ->
+            try{
             movies?.let {
-                binding.tvMovieTitle.text = it.title
-                binding.tvMovieDesc.text = it.overview
+                binding.tvMovieTitle.text = it.data?.title
+                binding.tvMovieDesc.text = it.data?.overview
                 Glide.with(requireContext())
-                    .load(Constants.posterUrl + it.backdropPath)
+                    .load(Constants.posterUrl + it.data?.backdropPath)
                     .into(binding.imgMovie)
+            }
+            }catch (e:Exception){
+
             }
         }
     }
